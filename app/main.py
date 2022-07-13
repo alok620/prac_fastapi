@@ -11,6 +11,10 @@ class Item(BaseModel):
     price: float
     tax: Union[float, None] = None
 
+class Prediction(BaseModel):
+    instances: str
+    parameters: Union[str, None] = None
+
 app = FastAPI()
 
 
@@ -19,6 +23,9 @@ def read_root():
     yay = imp.getYay()
     return {"Hello": yay}
 
+@app.post("/prediction/")
+async def getPred(pred: Prediction):
+    return {"predictions": pred.instances}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
