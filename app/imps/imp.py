@@ -1,0 +1,3 @@
+def getYay():
+    return "yay!"
+
