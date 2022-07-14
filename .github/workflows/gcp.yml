@@ -7,11 +7,13 @@ jobs:
   job_id:
     name: stuff
     runs-on: ubuntu-latest
+    env:
+      service: ${{secrets.SERVICEACCOUNTKEY}}
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: ${{ secrets.SERVICEACCOUNTKEY }}
+        credentials_json: service
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
