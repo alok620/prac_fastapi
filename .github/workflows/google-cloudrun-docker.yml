@@ -1,0 +1,21 @@
+name: gar
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    env:
+      sec: ${{secrets.SERVICE_ACCOUNT_KEY}}
+    steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: sec
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v0'
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
