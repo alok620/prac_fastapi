@@ -19,7 +19,7 @@ on:
 jobs:
   build-push-gar:
     name: Build and Push to Artifact Registry
-    runs-on: ubuntu latest
+    runs-on: ubuntu-latest
     env:
       IMAGE_NAME: dalle_nano
       PROJECTID: total-thinker-356217
