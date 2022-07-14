@@ -8,9 +8,9 @@ jobs:
       - uses: RafikFarhad/push-to-gcr-github-action@v4.1
         with:
           gcloud_service_key: ${{ secrets.SERVICE_ACCOUNT_KEY }} # can be base64 encoded or plain text
-          registry: us-west2/docker.pkg.dev
+          registry: us-west2-docker.pkg.dev
           project_id: total-thinker-356217
           image_name: backend
           image_tag: latest,v1
           dockerfile: ./Dockerfile
-          context: ./docker
+          context: .
