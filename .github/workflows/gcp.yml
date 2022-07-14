@@ -44,5 +44,5 @@ jobs:
       env:
         GIT_TAG: 1
       run: |-
-        docker tag $IMAGE_NAME us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME
+        docker tag $IMAGE_NAME us-west2-docker.pkg.dev$PROJECT_ID/practice/$IMAGE_NAME
+        docker push us-west2-docker.pkg.dev$PROJECT_ID/practice/$IMAGE_NAME
