@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: check
-      run: $${{secrets.SERVICE_ACCOUNT_KEY}}
+      run: echo "$${{secrets.SERVICE_ACCOUNT_KEY}}"
