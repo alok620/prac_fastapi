@@ -39,10 +39,12 @@ jobs:
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker us-west2-docker.pkg.dev --quiet
-        
+
     - name: Push Docker Image to Artifact Registry
+      env:
+        GIT_TAG: 1
       run: |-
         docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:$GIT_TAG
         docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:latest
-      
-      
+        docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:$GIT_TAG
