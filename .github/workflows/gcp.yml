@@ -1,21 +1,16 @@
----
-name: Build and Push Python Image to Google Cloud Platform
-on:
-  push:
-    branches: [ main ]
+name: Push to GCR GitHub Action
+on: [push]
 jobs:
-  job_id:
+  build-and-push-to-gcr:
     runs-on: ubuntu-latest
-    env: 
-      secret: ${{ secrets.SECRET_ACCOUNT_KEY }}
     steps:
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: secret
-
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v0'
-
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
+      - uses: actions/checkout@v2
+      - uses: RafikFarhad/push-to-gcr-github-action@v4.1
+        with:
+          gcloud_service_key: ${{ secrets.SERVICE_ACCOUNT_KEY }} # can be base64 encoded or plain text
+          registry: us-west2/docker.pkg.dev
+          project_id: total-thinker-356217
+          image_name: backend
+          image_tag: latest,v1
+          dockerfile: ./Dockerfile
+          context: ./docker
