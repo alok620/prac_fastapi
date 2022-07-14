@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       service: ${{secrets.SERVICEACCOUNTKEY}}
+      run: cat service
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
