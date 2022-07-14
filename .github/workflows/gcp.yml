@@ -10,7 +10,7 @@ jobs:
     
     steps:
     - name: check
-      run: cat ${{secrets.SERVICE_ACCOUNT_KEY}}
+      run: echo ${{secrets.SERVICE_ACCOUNT_KEY}}
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
