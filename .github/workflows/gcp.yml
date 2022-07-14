@@ -34,7 +34,7 @@ jobs:
         export_default_credentials: true
         
     - name: Build Docker Image
-      run: docker build -t $IMAGE_NAME:latest .
+      run: docker build -t $IMAGE_NAME .
       
     - name: Configure Docker Client
       run: |-
@@ -44,7 +44,5 @@ jobs:
       env:
         GIT_TAG: 1
       run: |-
-        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:$GIT_TAG
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:latest
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME:$GIT_TAG
+        docker tag $IMAGE_NAME us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME
+        docker push us-west2-docker.pkg.dev/$PROJECT_ID/practice/$IMAGE_NAME
