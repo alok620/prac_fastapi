@@ -17,6 +17,7 @@ jobs:
     - uses: google-github-actions/setup-gcloud@v0
       with:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        service_account_email: github-actions@total-thinker-356217.iam.gserviceaccount.com
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
