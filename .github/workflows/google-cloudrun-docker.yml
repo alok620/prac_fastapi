@@ -9,7 +9,7 @@ jobs:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: image
+      IMAGE_NAME: dalle-nano
       PROJECT_ID: total-thinker-356217
     steps:
     - name: Checkout
@@ -35,10 +35,7 @@ jobs:
         gcloud auth configure-docker us-west2-docker.pkg.dev --quiet
 
     - name: Push Docker Image to Artifact Registry
-      env:
-        GIT_TAG: v0.1.0
+
       run: |-
         docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
         docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
