@@ -22,7 +22,7 @@ def read_root():
     yay = imp.getYay()
     return {"Hello": yay}
 
-@app.post("/prediction/")
+@app.post("/prediction")
 async def getPred(pred: Prediction):
     return {"predictions": "predictionHere"}
 
@@ -35,7 +35,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 async def create_item(item: Item):
     return item
 
-@app.get("/health/", status_code=200)
+@app.get("/health", status_code=200)
 async def health_check():
     return {"Everything": "OK!"}
 
