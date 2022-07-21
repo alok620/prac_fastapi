@@ -1,4 +1,4 @@
-from typing import Union
+from typing import List, Dict, Union
 
 from fastapi import FastAPI, status
 from pydantic import BaseModel
@@ -12,7 +12,7 @@ class Item(BaseModel):
     tax: Union[float, None] = None
 
 class Prediction(BaseModel):
-        instances: list
+        instances: List[Dict] = []
 
 app = FastAPI()
 
@@ -24,7 +24,7 @@ def read_root():
 
 @app.post("/prediction")
 async def getPred(pred: Prediction):
-    return {"predictions": "predictionHere"}
+    return {"predictions": [{"pred": "here"}]}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
