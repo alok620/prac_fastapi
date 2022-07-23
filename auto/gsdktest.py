@@ -4,7 +4,7 @@ from google.cloud import aiplatform
 from google.cloud import artifactregistry_v1
 
 #variables
-PATH_TO_KEY=os.environ.get('UPLOAD_SERVICE_ACCOUNT')           #path to json key file
+PATH_TO_KEY=os.environ.get('UPLOADER_SERVICE_ACCOUNT')           #path to json key file
 PROJECT='total-thinker-356217'                                  #project name
 LOCATION='us-west2'                                             #region of your gcp project
 GAR_REPO='images'                                               #name of google artifact registry repository
