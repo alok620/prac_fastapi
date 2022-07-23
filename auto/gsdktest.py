@@ -3,16 +3,16 @@ from google.cloud import aiplatform
 from google.cloud import artifactregistry_v1
 
 #variables
-PATH_TO_KEY='./keys/total-thinker-356217-b007156315ed.json' #path to json key file
-PROJECT='total-thinker-356217'                              #project name
-LOCATION='us-west2'                                         #region of your gcp project
-GAR_REPO='images'                                           #name of google artifact registry repository
-DOCKER_IMAGE='dalle-nano:latest'                            #name of image in gar repository
-MODEL_DISPLAY_NAME='beta'                                   #name of model once imported
-PREDICT_ROUTE='/prediction'                                 #predict route for docker image
-HEALTH_ROUTE='/health'                                      #health route for docker image
-PORTS=[80]                                                  #exposed docker image ports
-ENDPOINT_MACHINE_TYPE='n1-standard-2'                       #machine type for endpoint
+PATH_TO_KEY=os.environ.get('UPLOAD_SERVICE_ACCOUNT')           #path to json key file
+PROJECT='total-thinker-356217'                                  #project name
+LOCATION='us-west2'                                             #region of your gcp project
+GAR_REPO='images'                                               #name of google artifact registry repository
+DOCKER_IMAGE='dalle-nano:latest'                                #name of image in gar repository
+MODEL_DISPLAY_NAME='beta'                                       #name of model once imported
+PREDICT_ROUTE='/prediction'                                     #predict route for docker image
+HEALTH_ROUTE='/health'                                          #health route for docker image
+PORTS=[80]                                                      #exposed docker image ports
+ENDPOINT_MACHINE_TYPE='n1-standard-2'                           #machine type for endpoint
 
 #all other parameters can be edited manually in the code body
 
