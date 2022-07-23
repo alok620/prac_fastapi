@@ -1,10 +1,11 @@
 import os
+import json
 from google.oauth2 import service_account
 from google.cloud import aiplatform
 from google.cloud import artifactregistry_v1
 
 #variables
-PATH_TO_KEY=os.environ.get('UPLOADER_SERVICE_ACCOUNT')           #path to json key file
+PATH_TO_KEY=os.environ.get('UPLOADER_SERVICE_ACCOUNT')          #path to json key file
 PROJECT='total-thinker-356217'                                  #project name
 LOCATION='us-west2'                                             #region of your gcp project
 GAR_REPO='images'                                               #name of google artifact registry repository
@@ -17,8 +18,10 @@ ENDPOINT_MACHINE_TYPE='n1-standard-2'                           #machine type fo
 
 #all other parameters can be edited manually in the code body
 
-my_credentials = service_account.Credentials.from_service_account_file(
-    PATH_TO_KEY)
+json_acct_info = json.loads(os.environ.get('UPLOADER_SERVICE_ACCOUNT'))
+
+my_credentials = service_account.Credentials.from_service_account_info(
+    json_acct_info)
 
 scoped_credentials = my_credentials.with_scopes(
     ['https://www.googleapis.com/auth/cloud-platform'])
