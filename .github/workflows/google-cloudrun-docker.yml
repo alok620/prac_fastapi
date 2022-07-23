@@ -42,5 +42,8 @@ jobs:
         docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
         
     - name: Upload and Deploy Model
-      
-      run: python auto/gsdktest.py
+      run: |-
+        pip install google-auth
+        pip install google-cloud-aiplatform
+        pip install google-cloud-artifact-registry
+        python auto/gsdktest.py
