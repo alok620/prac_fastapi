@@ -40,3 +40,7 @@ jobs:
       run: |-
         docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
         docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+        
+    - name: Upload and Deploy Model
+      
+      run: python auto/gsdktest.py
