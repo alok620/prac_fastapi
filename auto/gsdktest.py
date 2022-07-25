@@ -26,20 +26,11 @@ my_credentials = service_account.Credentials.from_service_account_info(
 scoped_credentials = my_credentials.with_scopes(
     ['https://www.googleapis.com/auth/cloud-platform'])
 
-print(my_credentials)
-
 aiplatform.init(
     project=PROJECT,
     location=LOCATION,
     credentials=my_credentials
 )
-
-client=artifactregistry_v1.ArtifactRegistryClient(credentials=my_credentials)
-print(client)
-
-docker_path=client.docker_image_path(project=PROJECT, location=LOCATION, repository=GAR_REPO, docker_image=DOCKER_IMAGE)
-
-print(docker_path)
 
 model=aiplatform.Model.upload(
     display_name=MODEL_DISPLAY_NAME,
@@ -48,9 +39,8 @@ model=aiplatform.Model.upload(
     serving_container_health_route=HEALTH_ROUTE,
     serving_container_ports=PORTS
 )
-print(model.display_name + ' created')
 
 endpoint=model.deploy(machine_type=ENDPOINT_MACHINE_TYPE,
     min_replica_count=1
 )
-print(endpoint)
+
