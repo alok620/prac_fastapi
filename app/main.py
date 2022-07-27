@@ -3,6 +3,8 @@ from typing import List, Dict, Union
 from fastapi import FastAPI, status
 from pydantic import BaseModel
 
+from transformers import pipeline, set_seed
+
 from .imps import imp
 
 class Item(BaseModel):
@@ -24,7 +26,10 @@ def read_root():
 
 @app.post("/prediction")
 async def getPred(pred: Prediction):
-    return {"predictions": [{"pred": "here"}]}
+    generator = pipeline('text-generation', model='gpt2')
+    set_seed(103)
+    res = generator(pred.instances[0]["instance_key_1"], max_length=30, num_return_sequences=5)
+    return {"predictions": res}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
