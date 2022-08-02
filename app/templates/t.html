@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--<meta charset="utf-8" />-->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<!--<title>Dalle-Nano</title> -->
+		<!--<link rel="stylesheet" href="/static/css/home.css" />-->
+
+		<script type="text/javascript">
+			function submitForm() {
+				var formElement = document.getElementById('input_prompt');
+				var data = new FormData(formElement);
+				fetch('/prediction', {
+					method: 'POST',
+					body: data,
+				})
+					.then(response => response.text())
+					.then(data => {
+						document.getElementById("responseArea").innerHTML = data;
+					})
+					.catch(error => {
+						console.error(error);
+					});
+			}
+		</script>
+
+	</head>
+	<body>
+		<header>
+			<h1>Welcome to Dalle-Nano</h1>
+			<p>AI generated images based on a prompt!</p>
+		</header>
+		<main>
+			<form id="input_prompt" method="post">
+				<fieldset class="get-prompt">
+					<label for="prompt">Prompt: <input type="text" name="prompt" id="prompt" /></label>
+				</fieldset>
+				<input type="submit" value="Submit" id="submit-prompt" onclick="submitForm()" />
+			</form>
+			<div id="responseArea"></div>
+		</main>
+	</body>
+</html>

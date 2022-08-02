@@ -1,0 +1,39 @@
+<!Doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/css/home.css" />
+		<script type="text/javascript">
+			function submitForm() {
+				var formElement = document.getElementById('myForm');
+				var data = new FormData(formElement);
+				fetch('/prediction', {
+					method: 'POST',
+					body: data,
+				})
+					.then(response => response.text())
+					.then(data => {
+						document.getElementById("responseArea").innerHTML = data;
+					})
+					.catch(error => {
+						console.error(error);
+					});
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+                	<h1>Super resolution image treatment</h1>
+			<p>AI generated text from a prompt</p>
+		</header>
+		<main>
+                	<form method="post" id="myForm">
+				<fieldset class="get-prompt">
+                        		<label for="taskname">Prompt:</label>
+                        		<input type="text" name="prompt" id="prompt" />
+				</fieldset>
+                        	<input type="button" value="Submit" id="submit-prompt" onclick="submitForm()">
+                	</form>
+                	<div id="responseArea"></div> 
+		</main>
+	</body>
+</html>
