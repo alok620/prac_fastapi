@@ -32,19 +32,15 @@ async def read_root(request: Request):
     return templates.TemplateResponse('home.html',
             {'request': request})
 
-"""
+
 @app.post("/prediction")
 async def getPred(pred: Prediction):
     generator = pipeline('text-generation', model='gpt2')
     set_seed(103)
     res = generator(pred.instances[0]["instance_key_1"], max_length=30, num_return_sequences=5)
     return {"predictions": res}
-"""
-@app.post("/submit")
-async def submit(request: Request, taskname: str=Form(...)):
-    return f'YAY {taskname}'
 
-@app.post("/prediction")
+@app.post("/submit")
 async def getPred(request: Request, prompt: str = Form(...)):
     generator = pipeline('text-generation', model='gpt2')
     set_seed(103)
