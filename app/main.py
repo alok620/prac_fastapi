@@ -4,6 +4,7 @@ from fastapi import FastAPI, status
 from pydantic import BaseModel
 
 from transformers import pipeline, set_seed
+import base64
 
 from fastapi import FastAPI, status, Request, Form
 from fastapi.staticfiles import StaticFiles
@@ -11,6 +12,8 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from .imps import imp
+
+from .d_mini import d_mini
 
 class Item(BaseModel):
     name: str
@@ -35,10 +38,22 @@ async def read_root(request: Request):
 
 @app.post("/prediction")
 async def getPred(pred: Prediction):
-    generator = pipeline('text-generation', model='gpt2')
-    set_seed(103)
-    res = generator(pred.instances[0]["instance_key_1"], max_length=30, num_return_sequences=5)
-    return {"predictions": res}
+    prompt = pred.instances[0]['prompt']
+    d_mini.generate_image(
+  	is_mega=False,
+  	text=prompt,
+  	seed=-1,
+  	grid_size=1,
+  	top_k=256,
+  	image_path='generated',
+  	models_root='pretrained',
+     	fp16=False,
+    ) 
+    
+    with open('app/images/generated.png', mode='rb') as file:
+        img = file.read()
+    img = base64.encodebytes(img)
+    return {"predictions": img}
 
 @app.post("/submit")
 async def getPred(request: Request, prompt: str = Form(...)):
