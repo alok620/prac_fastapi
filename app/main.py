@@ -50,17 +50,23 @@ async def getPred(pred: Prediction):
      	fp16=False,
     ) 
     
-    with open('app/images/generated.png', mode='rb') as file:
+    with open('/static/images/generated.png', mode='rb') as file:
         img = file.read()
-    img = base64.encodebytes(img)
+    img = base64.encodebytes(img).decode('utf-8')
     return {"predictions": img}
 
 @app.post("/submit")
 async def getPred(request: Request, prompt: str = Form(...)):
-    generator = pipeline('text-generation', model='gpt2')
-    set_seed(103)
-    res = generator(prompt, max_length=30, num_return_sequences=1)
-    return res[0]["generated_text"]
+    d_mini.generate_image(
+            is_mega=False,
+            text=prompt,
+            seed=-1,
+            grid_size=1,
+            top_k=256,
+            image_path='generated',
+            models_root='pretrained',
+            fp16=False,
+        )
 
 
 @app.get("/items{item_id}")
