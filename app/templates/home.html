@@ -16,7 +16,8 @@
 						//let img = document.createElement("img");
 						//img.src = "/static/images/generated.png";
 						//console.log(img);
-						document.getElementById("responseArea").innerHTML = "<img src='/static/images/generated.png'>";
+						//document.getElementById("responseArea").innerHTML = "<img src='/static/images/generated.png'>";
+						document.getElementById("image").src="/static/images/generated.png?t=" + new Date().getTime();
 						btn.classList.remove("submit-loading");
 					})
 					.catch(error => {
@@ -46,6 +47,7 @@
 				</button>
                 	</form>
                 	<div id="responseArea">
+				<img src="" id="image"/>
 			</div> 
 		</main>
 	</body>
