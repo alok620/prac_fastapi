@@ -13,10 +13,10 @@
 					body: data,
 				})
 					.then(data => {	
-						let img = document.createElement("img");
-						img.src = "/static/images/generated.png";
+						//let img = document.createElement("img");
+						//img.src = "/static/images/generated.png";
 						console.log(img);
-						document.getElementById("responseArea").appendChild(img);
+						document.getElementById("responseArea").innerHTML = "<img src='/static/images/generated.png'>";
 						btn.classList.remove("submit-loading");
 					})
 					.catch(error => {
