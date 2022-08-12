@@ -60,7 +60,7 @@ def generate_image(
         top_k=top_k, 
         is_verbose=True
     )
-    save_image(image, "app/images")
+    save_image(image, "app/static/images")
     print(ascii_from_image(image, size=128))
 
 
