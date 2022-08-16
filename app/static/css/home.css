@@ -25,10 +25,13 @@ form {
 	border-bottom: 3px solid #3b3b4f;
 }
 
-#Prompt {
+#prompt {
 	width: 100%;
-	min-height: 2em;
+	height: 1.5em;
 	margin: 10px 0;
+	resize: none;
+	overflow: hidden;
+	font-family: Tahoma;
 }
 
 #submit-prompt {
