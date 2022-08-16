@@ -80,6 +80,7 @@ form {
 }
 
 #responseArea {
+	position: relative;
 	width: 33%;
 	height: 60vh;
 	background-color: #3b3b4f;
@@ -92,5 +93,7 @@ form {
 }
 
 #image {
-	
+	position: absolute;
+	max-height: 90%;
+	max-width: 90%;
 }
