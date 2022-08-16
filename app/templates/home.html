@@ -7,13 +7,13 @@
 	<body>
 		<header>
                 	<h1>Dalle-Nano</h1>
-			<p>AI generated text from a prompt</p>
+			<p>AI generated art from a prompt</p>
 		</header>
 		<main>
                 	<form method="post" id="myForm">
 				<fieldset class="get-prompt">
                         		<label for="taskname">Prompt:</label>
-					<textarea name="prompt" id="prompt" onkeydown="if(event.keyCode == 13) { submitForm(); return false; }"  wrap="soft" ></textarea>
+					<textarea name="prompt" id="prompt" onkeydown="if(event.keyCode == 13) { submitForm(); return false; }"  wrap="soft" oninput="dynamic_grow(this)" ></textarea>
 				</fieldset>
 				<button type="button" value="Submit" id="submit-prompt" onclick="submitForm()">
 					<span class="submit-text">Submit</span>
